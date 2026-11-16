@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "swarm")(type "KiCad")(uri "${KIPRJMOD}/swarm.pretty")(options "")(descr "Swarm drone parts"))
+)

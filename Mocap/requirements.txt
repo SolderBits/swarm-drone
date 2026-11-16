@@ -1,0 +1,11 @@
+# backend for Low-Cost-Mocap with OV9281 / UVC cameras (no OpenCV contrib/SFM build needed)
+numpy
+scipy
+opencv-python
+flask
+flask-socketio
+flask-cors
+pyserial
+ruckig
+# only for the original PS3 Eye cameras ("camera_backend": "ps3eye"):
+# pseyepy  (see https://github.com/bensondaled/pseyepy)

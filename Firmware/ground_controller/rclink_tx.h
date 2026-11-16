@@ -1,21 +1,3 @@
-// rclink_tx.h
-// Minimal multi-drone ESP-NOW transmitter for ESP-FC's built-in ESP-NOW receiver.
-//
-// Wire-compatible with rtlopez/espnow-rclink v0.1.x, which is what ESP-FC uses
-// ("SPI Rx (e.g. built-in Rx)" receiver mode). Unlike that library's Transmitter
-// class, one ground ESP32 running this can pair with several drones at once, so
-// the Low-Cost-Mocap Python backend can keep using a single serial port.
-//
-// Protocol summary (from espnow-rclink Protocol.h / Receiver.cpp):
-//   frame  = <type><payload><csum>, csum = 0x55 XOR every byte before it
-//   drone  -> broadcast  PAIR_REQ {0xFE, wifiChannel}  every 50 ms until paired
-//   ground -> drone      PAIR_RES {0xFF}               (drone then only accepts us)
-//   ground -> drone      RC_DATA  {0x01, ch1..ch4 int16 us, ch5..ch8 int8 aux}
-//   drone  -> ground     FC_ALIVE {0x10} every 1 s, FC_DATA {0x11, telemetry}
-//
-// Needs nothing beyond the ESP32 Arduino core (2.x or 3.x); uses its built-in
-// Preferences library to remember the last Wi-Fi channel across resets.
-
 #pragma once
 
 #include <Arduino.h>
@@ -45,20 +27,20 @@ static const uint8_t WIFI_CH_MAX = 13;
 static const int PWM_MIN = 880;
 static const int PWM_CENTER = 1500;
 static const int PWM_MAX = 2120;
-static const uint32_t DISCOVERY_HOP_MS = 200;   // same as espnow-rclink
-static const uint32_t RELOCK_AFTER_MS = 5000;   // nothing heard from any drone -> rescan channels
-static const uint32_t SAVED_CH_DWELL_MS = 2500; // after a reset, listen on the last channel first
+static const uint32_t DISCOVERY_HOP_MS = 200;
+static const uint32_t RELOCK_AFTER_MS = 5000;
+static const uint32_t SAVED_CH_DWELL_MS = 2500;
 static const int MAX_DRONES = 8;
 static const int RX_QUEUE_LEN = 16;
 static const int RC_CHANNELS = 8;
 
 struct __attribute__((packed)) MsgRc {
   uint8_t type = RC_DATA;
-  int16_t ch1 = 1500;  // roll     (AETR order)
-  int16_t ch2 = 1500;  // pitch
-  int16_t ch3 = 1000;  // throttle
-  int16_t ch4 = 1500;  // yaw
-  int8_t ch5 = 0;      // AUX1..AUX4, 5 us resolution around 1500
+  int16_t ch1 = 1500;
+  int16_t ch2 = 1500;
+  int16_t ch3 = 1000;
+  int16_t ch4 = 1500;
+  int8_t ch5 = 0;
   int8_t ch6 = 0;
   int8_t ch7 = 0;
   int8_t ch8 = 0;
@@ -93,7 +75,6 @@ inline void seal(M &m) {
 
 inline int clampInt(int v, int lo, int hi) { return v < lo ? lo : (v > hi ? hi : v); }
 
-// Same rounding as espnow-rclink MessageRc::encodeAux
 inline int8_t encodeAux(int us) {
   int x = clampInt(us, PWM_MIN, PWM_MAX) - PWM_CENTER;
   int round = x > 0 ? 2 : -2;
@@ -115,9 +96,7 @@ inline void printMac(Print &p, const uint8_t *m) {
 
 class MultiTx {
  public:
-  // macs[i] = MAC address of drone i. An all-zero MAC means "learn": the first
-  // unknown drone that asks to pair takes that slot (its MAC is printed so you
-  // can paste it in and pin it).
+
   bool begin(const uint8_t (*macs)[6], int count, Print *log = nullptr) {
     _log = log;
     _count = count > MAX_DRONES ? MAX_DRONES : count;
@@ -139,10 +118,6 @@ class MultiTx {
     esp_now_register_recv_cb(&MultiTx::_onRecv);
     _lockedChannel = 0;
 
-    // Start on the channel we last used. Opening the serial port from Python
-    // usually resets this board while the drones stay paired to it; they no
-    // longer send pair requests, only a ping every second, so we need to be
-    // listening on their channel to pick them up again.
     _prefs.begin("rclink", false);
     _savedChannel = _prefs.getUChar("ch", 0);
     const bool haveSaved = _savedChannel >= WIFI_CH_MIN && _savedChannel <= WIFI_CH_MAX;
@@ -152,21 +127,19 @@ class MultiTx {
     return true;
   }
 
-  // Call as often as possible from loop().
   void update() {
     const uint32_t now = millis();
     _drainQueue(now);
 
     if (_lockedChannel == 0) {
-      // Discovery: hop channels until a drone's pair request is heard.
+
       if ((int32_t)(now - _nextHopMs) >= 0) {
         _hopChannel = _hopChannel >= WIFI_CH_MAX ? WIFI_CH_MIN : _hopChannel + 1;
         _setChannel(_hopChannel);
         _nextHopMs = now + DISCOVERY_HOP_MS;
       }
     } else if (now - _lastAnyHeardMs > RELOCK_AFTER_MS) {
-      // Haven't heard from any drone for a while (all switched off or rebooted
-      // onto another channel): go back to scanning.
+
       if (_log) _log->println("[rclink] no drone heard for 5 s, rescanning channels");
       _lockedChannel = 0;
       for (int i = 0; i < _count; i++) _slots[i].paired = false;
@@ -174,7 +147,6 @@ class MultiTx {
     }
   }
 
-  // Send 8 channels (microseconds, 1000-2000 typical) to drone `slot`.
   bool send(int slot, const uint16_t ch[RC_CHANNELS]) {
     if (slot < 0 || slot >= _count || !_slots[slot].paired) return false;
     MsgRc m;
@@ -191,7 +163,7 @@ class MultiTx {
   }
 
   bool paired(int slot) const { return slot >= 0 && slot < _count && _slots[slot].paired; }
-  // ms since we last heard anything (pair request / alive / telemetry) from this drone
+
   uint32_t heardAgeMs(int slot) const {
     if (!paired(slot)) return UINT32_MAX;
     return millis() - _slots[slot].lastHeardMs;
@@ -224,7 +196,6 @@ class MultiTx {
   uint8_t _savedChannel = 0;
   Preferences _prefs;
 
-  // Small ring buffer filled from the Wi-Fi task, drained in loop().
   RxItem _queue[RX_QUEUE_LEN];
   volatile int _qHead = 0, _qTail = 0;
   portMUX_TYPE _qMux = portMUX_INITIALIZER_UNLOCKED;
@@ -274,7 +245,7 @@ class MultiTx {
   void _lock(uint8_t ch) {
     _lockedChannel = ch;
     _setChannel(ch);
-    if (ch != _savedChannel) {  // only write flash when it changes
+    if (ch != _savedChannel) {
       _prefs.putUChar("ch", ch);
       _savedChannel = ch;
     }
@@ -308,7 +279,7 @@ class MultiTx {
     esp_now_peer_info_t peer;
     memset(&peer, 0, sizeof(peer));
     memcpy(peer.peer_addr, mac, 6);
-    peer.channel = 0;  // current channel
+    peer.channel = 0;
     peer.ifidx = WIFI_IF_STA;
     peer.encrypt = false;
     esp_now_add_peer(&peer);
@@ -323,7 +294,7 @@ class MultiTx {
 
       if (type == PAIR_REQ && it.len == sizeof(MsgPairReq)) {
         if (slot < 0) slot = _claimLearnSlot(it.mac);
-        if (slot < 0) continue;  // a drone we were not told about
+        if (slot < 0) continue;
         const uint8_t ch = it.data[1];
         if (ch < WIFI_CH_MIN || ch > WIFI_CH_MAX) continue;
         if (_lockedChannel == 0) {
@@ -360,11 +331,10 @@ class MultiTx {
           _lastAnyHeardMs = now;
           continue;
         }
-        // A ping addressed to us from a drone we have no record of: it was
-        // paired with this board before a reset. Take it back.
+
         if (slot < 0) slot = _claimLearnSlot(it.mac);
         if (slot < 0) continue;
-        if (_lockedChannel == 0) _lock(_hopChannel);  // we heard it, so it is on this channel
+        if (_lockedChannel == 0) _lock(_hopChannel);
         _ensurePeer(it.mac);
         _slots[slot].paired = true;
         _slots[slot].lastHeardMs = now;
@@ -384,4 +354,4 @@ class MultiTx {
 
 MultiTx *MultiTx::_instance = nullptr;
 
-}  // namespace rclink
+}

@@ -1,37 +1,11 @@
-// bench_test.ino  -  Step 3: check an ESP-FLY running ESP-FC before adding mocap.
-//
-// Flash this on a spare ESP32 dev board (the "ground" board). Open the Serial
-// Monitor at 115200 baud, line ending "Newline" (or "Both NL & CR"), and type
-// commands to send stick values to the drone over ESP-NOW.
-//
-// PROPS OFF for every test in this sketch.
-//
-// Commands
-//   help                  show this list
-//   status                link + channel values
-//   arm / disarm          AUX1 high / low (throttle must be at 1000 to arm)
-//   x                     emergency stop: disarm + throttle 1000
-//   t <1000-2000>         throttle  (capped at THROTTLE_CAP below)
-//   r <us> / p <us> / y <us>   roll / pitch / yaw stick, 1500 = centre
-//   c                     centre roll/pitch/yaw
-//   silence <ms>          stop transmitting for <ms> to watch ESP-FC failsafe
-//
-// Channels sent (AETR order, what ESP-FC expects by default):
-//   ch1 roll, ch2 pitch, ch3 throttle, ch4 yaw, AUX1 arm, AUX2 always high (use
-//   it for ANGLE mode), AUX3/AUX4 low.
-
 #include <Arduino.h>
 #include "rclink_tx.h"
 
-// ---- settings --------------------------------------------------------------
-// Leave all zeros to pair with the first ESP-FC drone that is switched on.
-// The drone's MAC is printed when it pairs; paste it here to pin it.
 uint8_t DRONE_MAC[1][6] = {{0x00, 0x00, 0x00, 0x00, 0x00, 0x00}};
 
-const int THROTTLE_CAP = 1500;           // bench safety limit (us)
-const uint32_t SEND_INTERVAL_MS = 20;    // 50 Hz, same rate as the original SBUS link
-const uint32_t IDLE_DISARM_MS = 60000;   // auto-disarm after 60 s with no command
-// ----------------------------------------------------------------------------
+const int THROTTLE_CAP = 1500;
+const uint32_t SEND_INTERVAL_MS = 20;
+const uint32_t IDLE_DISARM_MS = 60000;
 
 rclink::MultiTx radio;
 
@@ -176,7 +150,7 @@ void loop() {
   }
   if (armed && now - lastCommandMs > IDLE_DISARM_MS) stopAll(F("no command for 60 s"));
 
-  if ((int32_t)(now - silenceUntilMs) < 0) return;  // failsafe test: say nothing
+  if ((int32_t)(now - silenceUntilMs) < 0) return;
 
   if (now - lastSendMs >= SEND_INTERVAL_MS) {
     lastSendMs = now;

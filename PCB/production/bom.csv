@@ -1,0 +1,12 @@
+﻿Designator,Footprint,Quantity,Value,LCSC Part #
+C1,CP_Radial_D5.0mm_P2.00mm,1,100uF 6.3V,
+C2,C_Disc_D3.0mm_W1.6mm_P2.50mm,1,100nF,
+"D1, D2, D3, D4",D_DO-41_SOD81_P3.81mm_Vertical_KathodeUp,4,1N5819,
+J1,JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,1,BATT 1S (PH2.0),
+"Q1, Q2, Q3, Q4",SOT-23,4,AO3400A,
+"R1, R2, R3, R4",R_Axial_DIN0204_L3.6mm_D1.6mm_P2.54mm_Vertical,4,100,
+"R10, R9",R_Axial_DIN0204_L3.6mm_D1.6mm_P2.54mm_Vertical,2,100k,
+"R11, R12, R13",R_Axial_DIN0204_L3.6mm_D1.6mm_P2.54mm_Vertical,3,68,
+"R5, R6, R7, R8",R_Axial_DIN0204_L3.6mm_D1.6mm_P2.54mm_Vertical,4,10k,
+U1,XIAO_ESP32S3_THT,1,XIAO ESP32S3,
+U2,GY-521_THT,1,GY-521 (MPU-6050),

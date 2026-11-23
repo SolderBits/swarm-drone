@@ -1,32 +1,43 @@
-Item,Quantity,Original Price (INR),Price (USD),Link
-Seeed XIAO ESP32-S3,2,2278.00,23.98,https://robu.in/product/seeed-studio-xiao-esp32s3-2-4ghz-wifi-ble-5-0/
-GY-521 MPU-6050 IMU,2,254.00,2.68,https://quartzcomponents.com/products/mpu6050-gyroscope-accelerometer-sensor
-AO3400 MOSFET (SOT-23),15,90.00,0.96,https://quartzcomponents.com/products/ao3400-mosfet-30v-5-8a-a09t-sot-23-c-n-channel-smd-package
-1N5819 Schottky Diode,15,45.00,0.48,https://quartzcomponents.com/products/1n5819-shottky-barrier-diode
-100Ω Resistor,20,14.00,0.14,https://quartzcomponents.com/products/100-ohm-1-4-watt-resistor
-10kΩ Resistor,20,14.00,0.14,https://quartzcomponents.com/products/10k-ohm-1-4-watt-resistor
-100kΩ Resistor,10,6.00,0.06,https://quartzcomponents.com/products/100k-ohm-1-4-watt-resistor
-68Ω Resistor,20,14.00,0.14,https://quartzcomponents.com/products/68-ohm-1-4-watt-resistor-with-5-tolerance-pack-of-10
-100µF Capacitor,2,6.00,0.06,https://quartzcomponents.com/products/100uf-25v-radial-electrolytic-capacitor
-100nF Ceramic Capacitor,25,19.00,0.20,https://makerbazar.in/products/ceramic-capacitor
-MX2.0 Battery Connector (with wire),2,78.00,0.82,https://makerbazar.in/products/mx-pair-connector-with-wire-2-0mm-battery-charging-cable
-Male Header Pins (40 pin strip),2,14.00,0.15,https://quartzcomponents.com/products/40-pin-break-away-headers-straight-male-headers
-"720 Coreless Motors (2 CW + 2 CCW, with props)",12,537.00,5.64,https://makerbazar.in/products/magnetic-micro-coreless-motor-for-drones-quadcopters-rc-1
-55mm Propellers,4,39.00,0.41,https://makerbazar.in/products/4pcs-55mm-mini-drone-propeller-set-cw-ccw-coreless-motor
-1S LiPo 400mAh 30C,3,711.00,7.47,https://quartzcomponents.com/products/3-7v-30c-400mah-lithium-polymer-lipo-battery-yy702030
-3mm IR LED,12,60.00,0.63,https://quartzcomponents.com/products/3mm-ir-transmitter-led
-TP4056 Charger Module,1,18.00,0.19,https://quartzcomponents.com/products/tp4056-battery-charging-protection-module-type-c
-3.3kΩ Resistor,10,7.00,0.07,https://quartzcomponents.com/products/3-3k-ohm-1-4-watt-resistor
-M2 x 6mm Screws,8,16.00,0.16,https://quartzcomponents.com/products/m2-x-6mm-pan-head-phillips-screw-pack-of-4
-Double-Sided Foam Tape,1,23.00,0.24,https://quartzcomponents.com/products/white-sponge-double-sided-acrylic-foam-adhesive-tapes
-LiPo Battery Strap,2,116.00,1.22,https://robu.in/product/20cm-lipo-battery-strap-belt-reusable-cable-tie-wrap/
-30AWG Silicone Wire Red (1m),1,16.00,0.17,https://quartzcomponents.com/products/30awg-silicone-wire-red-1-meter-high-quality-ultra-flexible-wires
-30AWG Silicone Wire Black (1m),1,16.00,0.17,https://quartzcomponents.com/products/30awg-silicone-wire-black-1-meter-high-quality-ultra-flexible-wire
-Sony PlayStation 3 Eye Camera (used),2,1710.00,18.00,https://www.ebay.com/itm/166793845723
-850nm IR Bandpass Filter (replaces camera IR-cut filter),2,1710.00,18.00,https://commonlands.com/products/850nm-bandpass-filter
-12V 5A 60W Power Supply with 5.5mm DC Plug,1,425.00,4.47,https://robocraze.com/products/kento-g-12v-power-adapter-5a-60w-with-5-5mm-dc-plug-standard-ac-to-dc-power-supply
-Official Raspberry Pi USB 3.0 Hub,1,1191.00,12.54,https://robocraze.com/products/official-raspberry-pi-usb-3-hub
-International shipping for cameras and filters (estimate),1,1267.00,13.33,
-PCB Manufacturing,5,1000.00,10.53,https://robu.in/product/online-pcb-manufacturing-service/
-Shipping,1,100.00,1.05,
-TOTAL,,11794.00,124.10,
+Category,Item,Quantity,Cost INR,Supplier Link,Estimated Line Cost USD
+Flight electronics,Seeed XIAO ESP32-S3,4.0,1139.0,https://robu.in/product/seeed-studio-xiao-esp32s3-2-4ghz-wifi-ble-5-0/,11.99
+Flight electronics,GY-521 MPU6050 IMU,5.0,317.5,https://quartzcomponents.com/products/mpu6050-gyroscope-accelerometer-sensor,3.34
+Propulsion,720 coreless motors,20.0,895.0,https://makerbazar.in/products/magnetic-micro-coreless-motor-for-drones-quadcopters-rc-1,9.42
+Propulsion,55mm propellers,32.0,312.0,https://makerbazar.in/products/4pcs-55mm-mini-drone-propeller-set-cw-ccw-coreless-motor,3.28
+Power,1S LiPo 400mAh 30C,6.0,1422.0,https://quartzcomponents.com/products/3-7v-30c-400mah-lithium-polymer-lipo-battery-yy702030,14.97
+Motor electronics,AO3400 MOSFET,20.0,120.0,https://quartzcomponents.com/products/ao3400-mosfet-30v-5-8a-a09t-sot-23-c-n-channel-smd-package,1.26
+Motor electronics,1N5819 Schottky diode,20.0,60.0,https://quartzcomponents.com/products/1n5819-shottky-barrier-diode,0.63
+Motor electronics,100 ohm resistor,20.0,14.0,https://quartzcomponents.com/products/100-ohm-1-4-watt-resistor,0.15
+Motor electronics,100nF ceramic capacitor,25.0,19.0,https://makerbazar.in/products/ceramic-capacitor,0.2
+Power/connectors,MX2.0 battery connector with wire,6.0,234.0,https://makerbazar.in/products/mx-pair-connector-with-wire-2-0mm-battery-charging-cable,2.46
+IR markers,3mm IR LED,20.0,100.0,https://quartzcomponents.com/products/3mm-ir-transmitter-led,1.05
+IR markers,3.3k ohm resistor,20.0,14.0,https://quartzcomponents.com/products/3-3k-ohm-1-4-watt-resistor,0.15
+Motion capture,Sony PlayStation 3 Eye camera (used),4.0,3420.0,https://www.ebay.com/itm/166793845723,36.0
+Motion capture,850nm bandpass filter,4.0,3420.0,https://commonlands.com/products/850nm-bandpass-filter,36.0
+Motion capture,Official Raspberry Pi USB 3.0 hub,1.0,1191.0,https://robocraze.com/products/official-raspberry-pi-usb-3-hub,12.54
+Camera accessories,Camera mounting accessories (set),1.0,250.0,,2.63
+Power,12V 5A power supply,1.0,425.0,https://robocraze.com/products/kento-g-12v-power-adapter-5a-60w-with-5-5mm-dc-plug-standard-ac-to-dc-power-supply,4.47
+PCB,PCB manufacturing,5.0,1000.0,https://robu.in/product/online-pcb-manufacturing-service/,10.53
+Charging,TP4056 charger module,1.0,18.0,https://quartzcomponents.com/products/tp4056-battery-charging-protection-module-type-c,0.19
+General components,10k ohm resistor,20.0,14.0,https://quartzcomponents.com/products/10k-ohm-1-4-watt-resistor,0.15
+General components,100k ohm resistor,10.0,6.0,https://quartzcomponents.com/products/100k-ohm-1-4-watt-resistor,0.06
+General components,68 ohm resistor,20.0,14.0,https://quartzcomponents.com/products/68-ohm-1-4-watt-resistor-with-5-tolerance-pack-of-10,0.15
+General components,1k ohm resistor,20.0,14.0,https://maddyelectronics.com/product/1k-ohm-resistor-1-4-watt-20-pcs-pack,0.15
+General components,220 ohm resistor,20.0,14.0,,0.15
+General components,4.7k ohm resistor,20.0,14.0,https://www.digikey.in/product-detail/en/CF14JT4K70/CF14JT4K70CT-ND/1830366,0.15
+General components,330 ohm resistor,20.0,14.0,https://www.electroncomponents.com/Mini-Components/330-Ohm-Resistors,0.15
+General components,1N4148 diode,20.0,20.0,https://robocraze.com/products/1n4148-diode-pack-of-10,0.21
+Filtering,10nF ceramic capacitor,20.0,20.0,,0.21
+Filtering,1uF capacitor,10.0,20.0,https://www.robozar.com/product/1uf-105-ceramic-capacitor-pack-of-5-high-quality/,0.21
+Filtering,10uF capacitor,10.0,20.0,https://www.dnatechindia.com/10uf-35V-Electrolytic-Capacitor.html,0.21
+Power filtering,100uF capacitor,6.0,18.0,https://quartzcomponents.com/products/100uf-25v-radial-electrolytic-capacitor,0.19
+Assembly,Male header pins (40-pin strips),2.0,14.0,https://quartzcomponents.com/products/40-pin-break-away-headers-straight-male-headers,0.15
+Wiring,30AWG silicone wire red,2.0,32.0,https://quartzcomponents.com/products/30awg-silicone-wire-red-1-meter-high-quality-ultra-flexible-wires,0.34
+Wiring,30AWG silicone wire black,2.0,32.0,https://quartzcomponents.com/products/30awg-silicone-wire-black-1-meter-high-quality-ultra-flexible-wire,0.34
+Assembly,Heat-shrink assortment,1.0,100.0,https://zbotic.in/product/colorful-heat-shrink-tubing-insulation-set-168pcs/,1.05
+Assembly,Kapton tape,1.0,100.0,https://quartzcomponents.com/products/kapton-tape,1.05
+Assembly,Solder roll,1.0,100.0,https://robocraze.com/products/solder-wire-45gm,1.05
+Assembly,Zip ties pack,1.0,40.0,https://aws.robu.in/?p=18283,0.42
+Battery mounting,LiPo battery straps,2.0,116.0,https://robu.in/product/20cm-lipo-battery-strap-belt-reusable-cable-tie-wrap/,1.22
+Assembly,Double-sided foam tape,1.0,23.0,https://quartzcomponents.com/products/white-sponge-double-sided-acrylic-foam-adhesive-tapes,0.24
+Shipping,International Shipping allowance,1.0,4000,,14.39
+TOTAL,,,19115.5,,173.5

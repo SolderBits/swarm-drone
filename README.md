@@ -22,6 +22,7 @@ Two cameras watch three infrared LEDs on each drone. The Python backend in Mocap
 ![Assembled](Photos/Back.png)
 
 ## BOM
+
 | Item | Quantity | Price (INR) | Price (USD) | Link |
 |---|---|---|---|---|
 | Seeed XIAO ESP32-S3 | 2 | ₹2278.00 | $23.98 | [Link](https://robu.in/product/seeed-studio-xiao-esp32s3-2-4ghz-wifi-ble-5-0/) |
@@ -51,7 +52,6 @@ Two cameras watch three infrared LEDs on each drone. The Python backend in Mocap
 | 850nm IR Bandpass Filter (replaces camera IR-cut filter) | 2 | ₹1710.00 | $18.00 | [Link](https://commonlands.com/products/850nm-bandpass-filter) |
 | 12V 5A 60W Power Supply with 5.5mm DC Plug | 1 | ₹425.00 | $4.47 | [Link](https://robocraze.com/products/kento-g-12v-power-adapter-5a-60w-with-5-5mm-dc-plug-standard-ac-to-dc-power-supply) |
 | Official Raspberry Pi USB 3.0 Hub | 1 | ₹1191.00 | $12.54 | [Link](https://robocraze.com/products/official-raspberry-pi-usb-3-hub) |
-| shipping  | 1 | ₹1367.00 | $14.38 |  |
+| Shipping | 1 | ₹1367.00 | $14.38 | |
 | PCB Manufacturing | 5 | ₹1000.00 | $10.53 | [Link](https://robu.in/product/online-pcb-manufacturing-service/) |
-| **TOTAL** |  | **₹19115.50** | **$215.15** |  |
-
+| **TOTAL** | | **₹19115.50** | **$215.15** | |

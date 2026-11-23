@@ -53,5 +53,5 @@ Two cameras watch three infrared LEDs on each drone. The Python backend in Mocap
 | Official Raspberry Pi USB 3.0 Hub | 1 | ₹1191.00 | $12.54 | [Link](https://robocraze.com/products/official-raspberry-pi-usb-3-hub) |
 | shipping  | 1 | ₹1367.00 | $14.38 |  |
 | PCB Manufacturing | 5 | ₹1000.00 | $10.53 | [Link](https://robu.in/product/online-pcb-manufacturing-service/) |
-| **TOTAL** |  | **₹11794.00** | **$124.10** |  |
+| **TOTAL** |  | **₹19115.50** | **$215.15** |  |
 
